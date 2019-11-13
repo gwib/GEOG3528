@@ -3,10 +3,11 @@ close all
 % This script is describing the breakdown process of bedrock to rock, to stones to fine material
 
 
-ground.saturation_rocks = 1; %Volumetric fraction of the pure "rock system", i.e. only rocks, no stones or fines
-ground.saturation_stones = 0;
-ground.saturation_fines = 0;
+ground.saturation_rocks = 0.5; %Volumetric fraction of the pure "rock system", i.e. only rocks, no stones or fines
+ground.saturation_stones = 0.5;
+ground.saturation_fines = 0.5;
 
+% "transformation percentage"
 %these must be made dependent on temperature, water content, etc
 ground.bedrock2rocks = 0.0005; %fraction per year -> 0.1 means that 10% of the bedrock volume in a cell will go over to rocks in one year
 ground.rocks2stones = 0.00001;
@@ -65,6 +66,9 @@ for years =1:26000   %26000years
 end
 
 plot(res_surface_pos) %Fig 1
+title('Surface uplift due to cracked rocks taking up more space')
+xlabel('years')
+ylabel('Uplift [m]')
 figure
 imagesc(results_rocks) %Fig 2 - concentration of rocks in depth
 title('Concentration of rocks in depth')
@@ -246,13 +250,3 @@ ground.stones = ground.stonesD ./ ground.D;
 ground.fines = ground.finesD ./ ground.D;
 
 end
-
-
-
-
-
-
-
-
-
-
